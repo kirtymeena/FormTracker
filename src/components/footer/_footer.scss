@@ -3,5 +3,9 @@
     color: white;
     background: rgb(0, 50, 89);
     font-size: 10pt;
-    min-height: 35px
+    min-height: 35px;
+    display: flex;
+    align-items: center;
+    padding-inline: 1rem;
+    font-weight: 600;
 }
