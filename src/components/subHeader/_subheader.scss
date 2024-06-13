@@ -1,0 +1,15 @@
+.subHeader__wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    width: 100%;
+}
+
+.dropdown {
+    border-radius: 6px;
+    border: 1px solid #999;
+    width: 150px;
+    background-color: #F3FCF4;
+    font-weight: 700;
+}
