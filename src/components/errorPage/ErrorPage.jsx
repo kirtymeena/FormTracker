@@ -28,7 +28,7 @@ function ErrorPage() {
           }}
         >
           <h1 style={{ fontSize: "2.4em", margin: 0, color: "#FFF" }}>
-            Server Error
+            <b>Server Error</b>
           </h1>
         </div>
         <div style={{ margin: "0 0 0 2%", position: "relative" }}>
