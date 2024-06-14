@@ -28,7 +28,6 @@ function FormComp() {
     user_captcha_input: "",
   });
   const handleFormData = (e) => {
-    console.log(e.target.value);
     setFormData((curr) => ({
       ...curr,
       [e.target.name]: e.target.value,
@@ -80,9 +79,7 @@ function FormComp() {
       // const date = refNum.split("");
       // const convertToDate = date.slice(4, 10).join("");
       const date = refNum.split("/")[1];
-      console.log(date);
       const midDate = date.slice(0, 6);
-      console.log(midDate, "midDate");
       const convertToDate = date.slice(0, 6);
 
       const strDate = convertToDate.split("");
