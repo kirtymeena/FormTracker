@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
 import SubHeader from "../subHeader/SubHeader";
 import refresh from "../../assets/refresh.png";
+import { v4 as uuidv4 } from "uuid";
 // import Captcha from "../Captcha";
 import {
   loadCaptchaEnginge,
@@ -10,10 +11,12 @@ import {
   validateCaptcha,
 } from "react-simple-captcha";
 import Footer from "../footer/Footer";
+import { useNavigate } from "react-router-dom";
 function FormComp() {
   const [displayDate, setDisplayDate] = useState();
   const [reset, setReset] = useState(false);
   const [refreshCaptcha, setRefreshCaptcha] = useState(false);
+  const navigate = useNavigate();
   const [validationMsg, setValidationMsg] = useState({
     referenceNumber: "",
     lastName: "",
@@ -72,14 +75,15 @@ function FormComp() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    //captcha validation
-
     if (validateFields() === false) {
       const refNum = formData.referenceNumber;
-      const date = refNum.split("");
-      const convertToDate = date.slice(4, 10).join("");
-      // const date = refNum.split("/");
-      // const convertToDate = date[1];
+      // const date = refNum.split("");
+      // const convertToDate = date.slice(4, 10).join("");
+      const date = refNum.split("/")[1];
+      console.log(date);
+      const midDate = date.slice(0, 6);
+      console.log(midDate, "midDate");
+      const convertToDate = date.slice(0, 6);
 
       const strDate = convertToDate.split("");
       const day = strDate.slice(0, 2).join("");
@@ -91,6 +95,9 @@ function FormComp() {
       const endDate = new Date(dd.getTime() + addedDay);
 
       formatDate(endDate);
+      navigate(
+        `/Global-Passporttracking/track/index?${uuidv4()}${uuidv4()}${uuidv4()}`
+      );
     }
   };
 

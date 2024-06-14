@@ -30,7 +30,7 @@ function App() {
           <Route element={<Layout />}>
             <Route
               index
-              path="/Global-Passporttracking"
+              path="/Global-Passporttracking/:name?/:id?"
               element={<FormComp />}
             />
           </Route>
