@@ -252,8 +252,8 @@ function FormComp() {
         </form>
         {displayDate && (
           <div className="result__wrapper">
-            The Application has been recevied at the Consulate Generale of
-            Poland in Mumbai on {displayDate}
+            The Application has been recevied at the Consulate General of Poland
+            in Mumbai on {displayDate}
           </div>
         )}
       </div>
