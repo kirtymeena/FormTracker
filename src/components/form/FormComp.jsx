@@ -3,6 +3,7 @@ import Form from "react-bootstrap/Form";
 import SubHeader from "../subHeader/SubHeader";
 import refresh from "../../assets/refresh.png";
 import { v4 as uuidv4 } from "uuid";
+import captcha from "../../assets/captcha.png";
 // import Captcha from "../Captcha";
 import {
   loadCaptchaEnginge,
@@ -10,13 +11,11 @@ import {
   LoadCanvasTemplateNoReload,
   validateCaptcha,
 } from "react-simple-captcha";
-import Footer from "../footer/Footer";
-import { useNavigate } from "react-router-dom";
 function FormComp() {
   const [displayDate, setDisplayDate] = useState();
   const [reset, setReset] = useState(false);
   const [refreshCaptcha, setRefreshCaptcha] = useState(false);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [validationMsg, setValidationMsg] = useState({
     referenceNumber: "",
     lastName: "",
@@ -58,15 +57,15 @@ function FormComp() {
 
       return true;
     }
-    let user_captcha = document.getElementById("user_captcha_input").value;
-    if (validateCaptcha(user_captcha) === true) {
-      loadCaptchaEnginge(5);
-      document.getElementById("user_captcha_input").value = "";
-    } else {
-      alert("Captcha Does Not Match");
-      document.getElementById("user_captcha_input").value = "";
-      return true;
-    }
+    // let user_captcha = document.getElementById("user_captcha_input").value;
+    // if (validateCaptcha(user_captcha) === true) {
+    //   loadCaptchaEnginge(5);
+    //   document.getElementById("user_captcha_input").value = "";
+    // } else {
+    //   alert("Captcha Does Not Match");
+    //   document.getElementById("user_captcha_input").value = "";
+    //   return true;
+    // }
     setValidationMsg({ referenceNumber: "", lastName: "" });
 
     return false;
@@ -92,11 +91,23 @@ function FormComp() {
       const endDate = new Date(dd.getTime() + addedDay);
 
       formatDate(endDate);
-      navigate(
+      // navigate(
+      //   `/Global-Passporttracking/track/index?${uuidv4()}${uuidv4()}${uuidv4()}`
+      // );
+      // location.replace(
+      //   `/Global-Passporttracking/track/index?${uuidv4()}${uuidv4()}${uuidv4()}`
+      // );
+
+      window.history.pushState(
+        null,
+        "",
         `/Global-Passporttracking/track/index?${uuidv4()}${uuidv4()}${uuidv4()}`
       );
     }
   };
+  useEffect(() => {
+    console.log(window.location);
+  });
 
   const formatDate = (date) => {
     const dateStr = new Date(date).toISOString().split("T")[0];
@@ -123,16 +134,6 @@ function FormComp() {
       });
     }
   };
-
-  useEffect(() => {
-    if (refreshCaptcha || reset) {
-      loadCaptchaEnginge(5, "#FFFFFF", "#3F3FFF");
-    }
-  }, [refreshCaptcha, reset]);
-
-  useEffect(() => {
-    loadCaptchaEnginge(5, "#FFFFFF", "#3F3FFF");
-  }, []);
 
   useEffect(() => {}, [validationMsg]);
   return (
@@ -187,7 +188,7 @@ function FormComp() {
           </div>
           <div className="form__group-captcha">
             {/* <Captcha /> */}
-            <div
+            {/* <div
               style={{
                 height: "4rem",
                 display: "flex",
@@ -220,19 +221,24 @@ function FormComp() {
                   <b>
                     <span>Enter the text shown in image</span>
                   </b>
-                </Form.Label>
-              </div>
+                </Form.Label> */}
+            {/* </div> */}
 
-              <Form.Control
+            {/* <Form.Control
                 style={{ width: "13rem !important" }}
                 value={formData.user_captcha_input}
                 onChange={handleFormData}
                 placeholder=""
                 type="text"
                 id="user_captcha_input"
-                name="user_captcha_input"
-              />
-            </div>
+                name="user_captcha_input" */}
+            {/* /> */}
+            <img
+              src={captcha}
+              alt="captcha"
+              style={{ width: "21rem", objectFit: "cover" }}
+            />
+
             {/* {validationMsg.user_captcha_input?.length > 0 && (
               <div className="error__msg">
                 <div>{validationMsg.user_captcha_input}</div>
@@ -246,8 +252,8 @@ function FormComp() {
         </form>
         {displayDate && (
           <div className="result__wrapper">
-            The Application has been recevied at the Embassy of Poland in Mumbai
-            on {displayDate}
+            The Application has been recevied at the Consulate Generale of
+            Poland in Mumbai on {displayDate}
           </div>
         )}
       </div>

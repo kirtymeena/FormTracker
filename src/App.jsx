@@ -3,6 +3,7 @@ import Footer from "./components/footer/Footer";
 import FormComp from "./components/form/FormComp";
 import Header from "./components/header/Header";
 import SubHeader from "./components/subHeader/SubHeader";
+import { HashRouter } from "react-router-dom";
 import {
   BrowserRouter as Router,
   Route,
@@ -25,7 +26,8 @@ function App() {
   };
   return (
     <div>
-      <Router>
+      <HashRouter>
+        {" "}
         <Routes>
           <Route element={<Layout />}>
             <Route
@@ -36,7 +38,7 @@ function App() {
           </Route>
           <Route path="/" element={<ErrorPage />} />
         </Routes>
-      </Router>
+      </HashRouter>
     </div>
   );
 }
