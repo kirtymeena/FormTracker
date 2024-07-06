@@ -4,6 +4,12 @@ import SubHeader from "../subHeader/SubHeader";
 import refresh from "../../assets/refresh.png";
 import { v4 as uuidv4 } from "uuid";
 import captcha from "../../assets/captcha.png";
+// import captchaNoTick from "../../assets/captcha/captchaNoTick.png";
+import captchaNoTick from "../../assets/captcha/withoutTick.png";
+import captchaGif from "../../assets/captcha/captchaGif.gif";
+import withTick from "../../assets/captcha/withTick.png";
+import nonTick from "../../assets/captcha/nonTick.png";
+import tick from "../../assets/captcha/tick.png";
 // import Captcha from "../Captcha";
 import {
   loadCaptchaEnginge,
@@ -15,7 +21,9 @@ function FormComp() {
   const [displayDate, setDisplayDate] = useState();
   const [reset, setReset] = useState(false);
   const [refreshCaptcha, setRefreshCaptcha] = useState(false);
+  const [changeCaptcha, setChangeCatpcha] = useState(0);
   // const navigate = useNavigate();
+  // const [defaultDate, setDefaultDate] = useState(day/month/year);
   const [validationMsg, setValidationMsg] = useState({
     referenceNumber: "",
     lastName: "",
@@ -136,6 +144,19 @@ function FormComp() {
   };
 
   useEffect(() => {}, [validationMsg]);
+
+  useEffect(() => {
+    if (sessionStorage.getItem("staticDate") === null) {
+      sessionStorage.setItem("staticDate", "21/06/2024");
+    }
+  });
+  useEffect(() => {
+    if (changeCaptcha !== 0) {
+      setTimeout(() => {
+        setChangeCatpcha(2);
+      }, 1600);
+    }
+  });
   return (
     <div className="form__layout">
       <SubHeader />
@@ -186,7 +207,7 @@ function FormComp() {
               </div>
             )}
           </div>
-          <div className="form__group" style={{ marginLeft: "-20px" }}>
+          <div className="form__group" style={{ marginLeft: "-19px" }}>
             {/* <Captcha /> */}
             {/* <div
               style={{
@@ -233,11 +254,34 @@ function FormComp() {
                 id="user_captcha_input"
                 name="user_captcha_input" */}
             {/* /> */}
-            <img
+
+            {/* -------------------------------------------------------------- */}
+            {/* <img
               src={captcha}
               alt="captcha"
               style={{ width: "21rem", objectFit: "cover" }}
-            />
+            /> */}
+            {changeCaptcha === 0 ? (
+              <img
+                src={nonTick}
+                alt="captcha"
+                style={{ width: "21rem", objectFit: "cover" }}
+                onClick={() => setChangeCatpcha(1)}
+              />
+            ) : changeCaptcha === 1 ? (
+              <img
+                src={captchaGif}
+                alt="captcha"
+                style={{ width: "21rem", objectFit: "cover" }}
+              />
+            ) : (
+              <img
+                src={tick}
+                alt="captcha"
+                style={{ width: "21rem", objectFit: "cover" }}
+              />
+            )}
+            {/* ------------------------------------------------------------- */}
 
             {/* {validationMsg.user_captcha_input?.length > 0 && (
               <div className="error__msg">
@@ -250,10 +294,16 @@ function FormComp() {
             <button onClick={formReset}>Reset</button>
           </div>
         </form>
-        {displayDate && (
+        {/* {displayDate && (
           <div className="result__wrapper">
             The Application has been recevied at the Consulate General of Poland
             in Mumbai on {displayDate}
+          </div>
+        )} */}
+        {displayDate && (
+          <div className="result__wrapper">
+            The Application has been recevied at the Consulate General of Poland
+            in Mumbai on {sessionStorage.getItem("staticDate")}
           </div>
         )}
       </div>
