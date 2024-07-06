@@ -42,15 +42,15 @@ form {
 
 .form__group-captcha {
     // border: 1px solid red;
-    gap: 10px;
-    border: 1px solid rgb(221, 220, 220);
+    // gap: 10px;
+    // border: 1px solid rgb(221, 220, 220);
     display: flex;
 
-    padding-inline: 3rem;
+    // padding-inline: 3rem;
     flex-direction: row;
     align-items: center;
     width: 45%;
-    padding-block: 0.5rem;
+    // padding-block: 0.5rem;
     border-radius: 4px;
 
 }
@@ -123,9 +123,8 @@ button:hover {
     display: flex;
     flex-direction: row;
     gap: 0.5rem;
-    padding-left: 14rem;
-
-    margin-top: -9px;
+    padding-left: 16rem;
+    margin-top: -18px;
 
     button {
         border-radius: 4px;

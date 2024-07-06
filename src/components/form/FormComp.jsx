@@ -186,7 +186,7 @@ function FormComp() {
               </div>
             )}
           </div>
-          <div className="form__group-captcha">
+          <div className="form__group" style={{ marginLeft: "-20px" }}>
             {/* <Captcha /> */}
             {/* <div
               style={{
